@@ -1,10 +1,47 @@
 import React, { useState } from 'react'
 import { Address } from './data/Address'
 import Form from './components/Form';
-const App = () => {
-    //App
-    const [address, setAddress] = useState([]);
+import styled from 'styled-components';
 
+const WrapperIems = styled.div`
+    flex:1;
+    margin:20px;
+    margin-left:35%;
+    padding:10px;
+    border: 1px solid;
+    background-color: white;
+    display: flex;
+    border-radius: 10px;
+    justify-content:space-around;
+    transition: all .2s ease-in-out;
+    :hover{
+        transform: scale(1.03);
+    }
+`;
+const Container = styled.div`
+    display: flex;
+    justify-content: center;
+    flex:1;
+    background-color:#F9F9F9;
+    height: 100vh;
+`;
+const Item = styled.span`
+    width:300px;
+    flex-wrap: wrap;
+    display: flex;
+    margin-right:20px;
+
+`;
+const WrapperCard = styled.div`
+    position: absolute;
+    margin-top:200px;
+    min-width:900px;
+    cursor: pointer;
+
+`;
+const App = () => {
+    const [address, setAddress] = useState([]);
+    const [currentAddress, setCurrentAddress] = useState([]);
     const generateAddress = (amphoe) => {
         resetAddress()
         if(amphoe === ''){
@@ -16,7 +53,7 @@ const App = () => {
                 setAddress((address)=>{return[...address,Address[i]]})
                 counter+=1
             }
-            if(counter === 3){
+            if(counter === 5){
                 break
             }
         }
@@ -24,32 +61,28 @@ const App = () => {
     const resetAddress = () =>{
         setAddress([])
     }
-    const sendAddress =  () =>{
-        if(address!==null){
-            console.log('this',address[0]);
-        }else{
-            console.log('no address');
-        }
+    const getAddressItem =()=>{
+        setCurrentAddress(address[0])
+        resetAddress()
     }
-
     return (
-        <div>
-            <Form generateAddress={generateAddress} resetAddress={resetAddress} sendAddress={sendAddress}/>
-            {address ?
+        <Container>
+            <Form generateAddress={generateAddress} resetAddress={resetAddress}  currentAddress={currentAddress}/>
+            <WrapperCard onClick={getAddressItem}>
+            {address &&
                 address.map((item,key)=>{
                     return(
-                        <button key={item.district+item.zipcode} style={{width:'50%',margin:'20px',padding:'10px'}}>
-                            <p style={{marginRight:'20px'}}>จังหวัด :{item.province}</p>
-                            <p style={{marginRight:'20px'}}>อำเภอ/เขต :{item.amphoe}</p>
-                            <p style={{marginRight:'20px'}}>ตำบล :{item.district}</p>
-                            <p>รหัสไปรษนี :{item.zipcode}</p>
-                        </button>
+                        <WrapperIems key={item.district+item.zipcode}>
+                            <Item>จังหวัด: {item.province}</Item>
+                            <Item>อำเภอ/เขต: {item.amphoe}</Item>
+                            <Item>ตำบล: {item.district}</Item>
+                            <Item>รหัสไปรษณีย์: {item.zipcode}</Item>
+                        </WrapperIems>
                     )
                 })
-                :
-                'ไม่ทราบที่อยู่'
             }
-        </div>
+            </WrapperCard>
+        </Container>
     )
 }
 export default App
