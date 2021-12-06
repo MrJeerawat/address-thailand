@@ -1,5 +1,4 @@
 import styled from "styled-components";
-
 export const WrapperForm = styled.div`
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@200&display=swap');
     font-family: 'Noto Sans Thai', sans-serif;
@@ -109,4 +108,40 @@ export const WrapperTitle = styled.div`
     justify-content: center;
     letter-spacing: 5px;
     margin-bottom:20px;
+`;
+export const WrapperIems = styled.div`
+    flex:1;
+    margin:20px;
+    margin-left:35%;
+    padding:10px;
+    border: 1px solid;
+    background-color: white;
+    display: flex;
+    border-radius: 10px;
+    justify-content:space-around;
+    transition: all .2s ease-in-out;
+    :hover{
+        transform: scale(1.03);
+    }
+`;
+export const Container = styled.div`
+    display: flex;
+    justify-content: center;
+    flex:1;
+    background-color:#F9F9F9;
+    height: 100vh;
+`;
+export const Item = styled.span`
+    width:300px;
+    flex-wrap: wrap;
+    display: flex;
+    margin-right:20px;
+
+`;
+export const WrapperCard = styled.div`
+    position: absolute;
+    margin-top:200px;
+    min-width:900px;
+    cursor: pointer;
+
 `;

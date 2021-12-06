@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useForm } from "react-hook-form";
-import {WrapperForm,FormStyle,WrapperTitle,Title,Span,Input,WrapperButton,ButtonStyle,WrapperInput} from './styles'
+import {WrapperForm,FormStyle,WrapperTitle,Title,Span,Input,WrapperButton,ButtonStyle,WrapperInput} from '../styles'
 const Form = ({ generateAddress, resetAddress, currentAddress }) => {
 
-    const [addressValues, setAddressValues] = useState([{amphoe:'ฟหกฟ',district:'',province:'',zipcode:''}])
+    const [addressValues, setAddressValues] = useState([{amphoe:'',district:'',province:'',zipcode:''}])
     const { register, handleSubmit, } = useForm();
     const onSubmit = (data) => {
         alert(
