@@ -25,18 +25,19 @@ const App = () => {
     const resetAddress = () =>{
         setAddress([])
     }
-    const getAddressItem =()=>{
-        setCurrentAddress(address[0])
+    const getAddressItem =(item)=>{
+        // console.log(e);
+        setCurrentAddress(item)
         resetAddress()
     }
     return (
         <Container>
             <Form generateAddress={generateAddress} resetAddress={resetAddress}  currentAddress={currentAddress}/>
-            <WrapperCard onClick={getAddressItem}>
+            <WrapperCard >
             {address &&
                 address.map((item,key)=>{
                     return(
-                        <WrapperIems key={item.district+item.zipcode}>
+                        <WrapperIems onClick={() => getAddressItem(item)} key={item.district+item.zipcode}>
                             <Item>จังหวัด: {item.province}</Item>
                             <Item>อำเภอ/เขต: {item.amphoe}</Item>
                             <Item>ตำบล: {item.district}</Item>
